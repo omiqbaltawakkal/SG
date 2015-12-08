@@ -1,0 +1,25 @@
+function Dijkstra(Graph, source):
+       for each vertex v in Graph:                                
+           dist[v] := infinity ;                                  
+                                                                  
+           previous[v] := undefined ;                             
+       end for                                                    
+       
+       dist[source] := 0 ;                                        
+       Q := the set of all nodes in Graph ;                       
+      while Q is not empty:                                      
+          u := vertex in Q with smallest distance in dist[] ;    
+          remove u from Q ;
+          if dist[u] = infinity:
+              break ;                                            
+          end if
+          for each neighbor v of u:
+              alt := dist[u] + dist_between(u, v) ;
+              if alt < dist[v]:
+                  dist[v] := alt ;
+                  previous[v] := u ;
+                  decrease-key v in Q;
+              end if
+          end for
+      end while
+  return dist;
